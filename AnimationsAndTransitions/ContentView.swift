@@ -1,25 +1,21 @@
 import SwiftUI
-import Playgrounds
 
 struct ContentView: View {
-    @State private var scale = 1.0
+    @State private var value = 0.0
     
     var body: some View {
-        Text("Hello, world!")
-            .scaleEffect(scale)
-            .onTapGesture {
-                withAnimation {
-                    scale += 1
+        VStack {
+            CountingText(value: value)
+            Button("Push Me") {
+                withAnimation(.linear) {
+                    value = Double.random(in: 1...1000)
                 }
             }
-            .frame(width: 400, height: 400)
+        }
+        .frame(width: 400, height: 400)
     }
 }
 
 #Preview {
     ContentView()
-}
-
-#Playground {
-    _ = 1 + 2
 }
