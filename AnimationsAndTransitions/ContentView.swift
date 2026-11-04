@@ -1,16 +1,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var scale = 1.0
+    @State var isFavorite = false
     
     var body: some View {
-        VStack {
-            Button("Tap Me") {
-                withMotionAnimation {
-                    scale += 1
+        VStack(spacing: 60) {
+            ForEach([Font.body, Font.largeTitle, Font.system(size: 72)], id: \.self) { font in
+                Button {
+                    isFavorite.toggle()
+                } label: {
+                    if isFavorite {
+                        Image(systemName: "heart.fill")
+                            .foregroundStyle(.red)
+                            .transition(.confetti(color: .red, size: 3))
+                            .font(font)
+                    } else {
+                        Image(systemName: "heart")
+                            .foregroundStyle(.gray)
+                            .font(font)
+                    }
                 }
             }
-            .scaleEffect(scale)
         }
         .frame(width: 400, height: 400)
     }
