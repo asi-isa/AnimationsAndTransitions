@@ -12,7 +12,7 @@ struct ContentView: View {
                     if isFavorite {
                         Image(systemName: "heart.fill")
                             .foregroundStyle(.red)
-                            .transition(.confetti(color: .red, size: 3))
+                            .transition(.confetti(color: .red.gradient, size: 3))
                             .font(font)
                     } else {
                         Image(systemName: "heart")

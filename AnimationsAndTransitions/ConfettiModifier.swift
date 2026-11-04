@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ConfettiModifier: ViewModifier {
+struct ConfettiModifier<T: ShapeStyle>: ViewModifier {
     @State private var circleSize = 0.00001
     @State private var strokeMultiplier = 1.0
     @State private var confettiIsHidden = true
@@ -15,7 +15,7 @@ struct ConfettiModifier: ViewModifier {
     @State private var confettiScale = 1.0
     @State private var contentsScale = 0.00001
     private let speed = 0.3
-    var color: Color
+    var color: T
     var size: Double
     
     func body(content: Content) -> some View {
@@ -76,7 +76,7 @@ extension AnyTransition{
             )
     }
     
-    static func confetti(color: Color = .blue, size: Double = 3.0) -> AnyTransition {
+    static func confetti<T: ShapeStyle>(color: T = .blue, size: Double = 3.0) -> AnyTransition {
         AnyTransition
             .modifier(
                 active: ConfettiModifier(color: color, size: size),
